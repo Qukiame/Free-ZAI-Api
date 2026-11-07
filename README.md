@@ -105,7 +105,6 @@ if SYSTEM_PROMPT:
     messages.append({"role": "system", "content": SYSTEM_PROMPT})
 
 print(f"chat from {MODEL_NAME} has started.")
-print(f"sys prompt: {SYSTEM_PROMPT}")
 print("write answer (exit from exit):")
 
 while True:
