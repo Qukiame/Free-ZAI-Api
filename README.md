@@ -54,6 +54,83 @@ python main.py
 
 Server starts on `http://127.0.0.1:8492/v1`.
 
+## Custom Terminal Client (Added in this Fork)
+
+This fork includes an additional script — **`chat_client.py`** — designed for users who want to chat with the models directly from their terminal without installing third-party GUI clients (like opencode or Chatbox).
+
+### Features
+- **Conversation Memory**: Unlike basic scripts, this client stores the chat history, so the model remembers previous messages.
+- **System Prompt Support**: You can define the model's persona (e.g., "You are a senior Python developer") right in the code.
+- **Zero Configuration**: Works out of the box as long as the main server (`main.py`) is running.
+
+### How to use
+
+1. **Start the server** in the first terminal window:
+   ```bash
+   python main.py
+   ```
+
+2. Install the OpenAI library (if you haven't already):
+   ```bash
+   pip install openai
+   ```
+
+3. Run the custom client in a second terminal window:
+   ```bash
+   python chat.py
+   ```
+
+4. Chat! The script will prompt you for input. Type exit to quit.
+
+### Customization
+You can edit the SYSTEM_PROMPT variable inside chat_client.py to change the model's behavior. For example:
+```python
+SYSTEM_PROMPT = "ur prompt"
+```
+
+### The Script (chat.py)
+If you prefer to copy the code manually, here it is:
+```python
+from openai import OpenAI
+
+MODEL_NAME = "x-preview-l" 
+
+SYSTEM_PROMPT = "ur prompt"
+
+client = OpenAI(base_url="http://127.0.0.1:8492/v1", api_key="sk-nothing")
+
+messages = []
+
+if SYSTEM_PROMPT:
+    messages.append({"role": "system", "content": SYSTEM_PROMPT})
+
+print(f"chat from {MODEL_NAME} has started.")
+print(f"sys prompt: {SYSTEM_PROMPT}")
+print("write answer (exit from exit):")
+
+while True:
+    q = input("\nYou: ")
+    if q.lower() == "exit":
+        break
+    
+    messages.append({"role": "user", "content": q})
+    
+    try:
+        resp = client.chat.completions.create(
+            model=MODEL_NAME,
+            messages=messages
+        )
+        
+        answer = resp.choices[0].message.content
+        print(f"GLM: {answer}")
+        
+        messages.append({"role": "assistant", "content": answer})
+        
+    except Exception as e:
+        print(f"\n[Error]: {e}")
+        messages.pop()
+```
+
 ### Test
 
 ```bash
