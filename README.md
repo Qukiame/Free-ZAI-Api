@@ -56,7 +56,7 @@ Server starts on `http://127.0.0.1:8492/v1`.
 
 ## Custom Terminal Client (Added in this Fork)
 
-This fork includes an additional script — **`chat_client.py`** — designed for users who want to chat with the models directly from their terminal without installing third-party GUI clients (like opencode or Chatbox).
+This fork includes an additional script — **`chat.py`** — designed for users who want to chat with the models directly from their terminal without installing third-party GUI clients (like opencode or Chatbox).
 
 ### Features
 - **Conversation Memory**: Unlike basic scripts, this client stores the chat history, so the model remembers previous messages.
