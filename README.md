@@ -83,7 +83,7 @@ This fork includes an additional script — **`chat.py`** — designed for users
 4. Chat! The script will prompt you for input. Type exit to quit.
 
 ### Customization
-You can edit the SYSTEM_PROMPT variable inside chat_client.py to change the model's behavior. For example:
+You can edit the SYSTEM_PROMPT variable inside chat.py to change the model's behavior. For example:
 ```python
 SYSTEM_PROMPT = "ur prompt"
 ```
