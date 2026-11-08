@@ -1,6 +1,8 @@
 from openai import OpenAI
 
 MODEL_NAME = "x-preview-l" 
+# You could insert a different model here;
+# I used this one because it was the only one that worked for me.
 
 SYSTEM_PROMPT = "ur prompt"
 
